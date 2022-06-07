@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Default">
+    
+    <listeners>
+        <listener class-name="com.hetacz.ng2tr.listeners.TestRailIntegration"/>
+    </listeners>
+    
+<!--    <parameter name="" value=""></parameter>-->
+    
+    <test name="MyTest">
+        <classes>
+            <class name="com.hetacz.ng2tr.MyTest"/>
+        </classes>
+    </test>
+</suite>
