@@ -1,4 +1,4 @@
-package com.hetacz.ngtotr.listeners;
+package com.hetacz.ngtotr;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

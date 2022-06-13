@@ -2,14 +2,14 @@
 <suite name="Default">
     
     <listeners>
-        <listener class-name="com.hetacz.ng2tr.listeners.TestRailIntegration"/>
+        <listener class-name="com.hetacz.ngtotr.TestRailIntegration"/>
     </listeners>
     
-<!--    <parameter name="" value=""></parameter>-->
+<!--    <parameter name="runID" value=""></parameter>-->
     
     <test name="MyTest">
-        <classes>
-            <class name="com.hetacz.ng2tr.MyTest"/>
-        </classes>
+        <packages>
+            <package name="com.hetacz.ngtotr.test"/>
+        </packages>
     </test>
 </suite>

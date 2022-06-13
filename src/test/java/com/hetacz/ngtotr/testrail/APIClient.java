@@ -1,4 +1,4 @@
-package com.hetacz.ngtotr.listeners.testrail;
+package com.hetacz.ngtotr.testrail;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

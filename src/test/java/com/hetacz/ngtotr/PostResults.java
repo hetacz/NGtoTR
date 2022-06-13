@@ -1,8 +1,10 @@
-package com.hetacz.ngtotr.listeners;
+package com.hetacz.ngtotr;
 
-import com.hetacz.ngtotr.listeners.testrail.APIClient;
-import com.hetacz.ngtotr.listeners.testrail.APIException;
+import com.hetacz.ngtotr.testrail.APIClient;
+import com.hetacz.ngtotr.testrail.APIException;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.testng.ITestResult;
@@ -12,26 +14,34 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class PostResults {
+class PostResults {
 
-    @Getter
-    private static final String CLIENT = ""; //!
-    @Getter
-    private static final String USER = ""; //!
-    @Getter
-    private static final String PASSWORD = ""; //!
-    private static final int RUN_ID = 1111111111; //!
     private static final String STATUS_ID = "status_id";
     private static final String COMMENT = "comment";
     private static final String ELAPSED = "elapsed";
     private static final String WITH_PARAMETERS = " with parameters: ";
+    @Setter(AccessLevel.PACKAGE)
+    @Getter(AccessLevel.PACKAGE)
+    private static String client; //!
+    @Setter(AccessLevel.PACKAGE)
+    @Getter(AccessLevel.PACKAGE)
+    private static String user; //!
+    @Setter(AccessLevel.PACKAGE)
+    @Getter(AccessLevel.PACKAGE)
+    private static String password; //!
+    @Setter(AccessLevel.PACKAGE)
+    @Getter(AccessLevel.PACKAGE)
+    private static boolean isUsingRunCase;
+    @Setter(AccessLevel.PACKAGE)
+    @Getter(AccessLevel.PACKAGE)
+    private static int runID; //!
 
-    public void postResults(int testRailId, @NotNull ITestResult result, String parameters) {
-        if (RUN_ID != 0) {
+    void postResults(int testRailId, @NotNull ITestResult result, String parameters) {
+        if (runID != 0) {
             log.info(
                     "TestId [{}], run [{}], with parameters: {} & status: {}",
                     testRailId,
-                    RUN_ID,
+                    runID,
                     parameters,
                     result.getStatus()
             );
@@ -39,10 +49,6 @@ public class PostResults {
         } else {
             log.error("Run ID not set.");
         }
-    }
-
-    public void init(/***/) {
-        // read from file if no args given, throw on reinitialization attempt
     }
 
     private Map<String, Object> generateMetaData(@NotNull ITestResult result, String parameters) {
@@ -80,7 +86,7 @@ public class PostResults {
 
     private void post(int testRailId, Map<String, Object> data) {
         try {
-            getTestRailAPIClient().sendPost("add_result_for_case/" + RUN_ID + "/" + testRailId, data);
+            getTestRailAPIClient().sendPost("add_result_for_case/" + runID + "/" + testRailId, data);
         } catch (APIException | IOException e) {
             log.error("Error posting results to Testrail.");
             e.printStackTrace();
@@ -88,9 +94,9 @@ public class PostResults {
     }
 
     private @NotNull APIClient getTestRailAPIClient() {
-        APIClient client = new APIClient(CLIENT);
-        client.setUser(USER);
-        client.setPassword(PASSWORD);
-        return client;
+        APIClient apiClient = new APIClient(client);
+        apiClient.setUser(user);
+        apiClient.setPassword(password);
+        return apiClient;
     }
 }

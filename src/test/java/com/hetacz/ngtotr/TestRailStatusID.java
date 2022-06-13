@@ -1,9 +1,10 @@
-package com.hetacz.ngtotr.listeners;
+package com.hetacz.ngtotr;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public enum TestRailStatusID {
 
     PASS(1, "PASSED"),
@@ -12,8 +13,6 @@ public enum TestRailStatusID {
     RETEST(4, "SKIPPED"),
     FAIL(5, "FAILED");
 
-    @Getter
     private final int value;
-    @Getter
     private final String msg;
 }

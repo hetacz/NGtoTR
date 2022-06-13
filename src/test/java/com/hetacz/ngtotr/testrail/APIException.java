@@ -1,4 +1,4 @@
-package com.hetacz.ngtotr.listeners.testrail;
+package com.hetacz.ngtotr.testrail;
 
 /**
  * TestRail API binding for Java (API v2, available since TestRail 3.0)

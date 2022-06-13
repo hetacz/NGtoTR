@@ -1,4 +1,4 @@
-package com.hetacz.ngtotr.listeners;
+package com.hetacz.ngtotr;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

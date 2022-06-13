@@ -1,6 +1,7 @@
-package com.hetacz.ngtotr;
+package com.hetacz.ngtotr.test;
 
-import com.hetacz.ngtotr.listeners.TestRailID;
+import com.hetacz.ngtotr.Setup;
+import com.hetacz.ngtotr.TestRailID;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.testng.SkipException;
@@ -35,13 +36,13 @@ public class MyTest {
         Assert.assertThat(value, equalTo(true));
     }
 
-    @TestRailID
-    @Test(description="")
+    @TestRailID(30738)
+    @Test
     public void skipTest() {
         throw new SkipException("Test skipped programmatically.");
     }
 
-    @TestRailID
+    @TestRailID(30724)
     @Test(description = "Try Data Provider. T37879. C30724", dataProvider = "myData")
     public void tryDataProvider(Object o) {
         Assert.assertThat(o, is(not(null)));
@@ -50,5 +51,10 @@ public class MyTest {
     @DataProvider(name = "myData")
     public Object[] myData() {
         return new Object[]{1, 2, 3};
+    }
+
+    @Test
+    public void x() {
+        new Setup.Builder().build().initWithValues();
     }
 }
