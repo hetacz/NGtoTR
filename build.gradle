@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.hetacz'
-version '0.1.0'
+version '0.2.0'
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     // https://mvnrepository.com/artifact/org.testng/testng
-    testImplementation 'org.testng:testng:7.5'
+    testImplementation 'org.testng:testng:7.6.0'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
     testImplementation 'org.apache.logging.log4j:log4j-api:2.17.2'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
@@ -32,8 +32,8 @@ dependencies {
     testImplementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.projectlombok:lombok:1.18.24'
 
     testImplementation 'org.jetbrains:annotations:23.0.0'
